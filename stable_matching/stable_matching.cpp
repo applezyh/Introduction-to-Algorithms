@@ -52,17 +52,17 @@ int main(){
     cout<<"请输入待匹配的人数:"<<endl;
     cin>>n;
     Person *man=new Person[n];
-    Person *lady=new Person[n];
+    Person *women=new Person[n];
     for(int i=0;i<n;i++){
         man[i].rank=new int[n];
-        lady[i].rank=new int[n];
+        women[i].rank=new int[n];
     }
      for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
         {
             int t;
-            cout << "请输入第" << i+1 << "个男人喜欢的第" << j+1 << "个女人:";
+            cout << "请输入第" << i+1 << "个男人第"<<j+1<<"喜欢的女人:";
             cin >> t;
             man[i].setRank(t-1, j);
         }
@@ -72,9 +72,9 @@ int main(){
         for (int j = 0; j < n; j++)
         {
             int t;
-            cout << "请输入第" << i+1 << "个女人喜欢的第" << j+1 << "个男人:";
+            cout << "请输入第" << i+1 << "个女人第"<<j+1<<"喜欢的男人:";
             cin >> t;
-            lady[i].setRank(t-1, j);
+            women[i].setRank(t-1, j);
         }
     }
     while(true){
@@ -85,23 +85,23 @@ int main(){
                 int num_Y = man[i].getBetter();
                 int girl = man[i].getRank(num_Y);
                 man[i].setBetter(num_Y + 1);
-                if (!lady[girl].getApt())
+                if (!women[girl].getApt())
                 {
                     man[i].setApt(true);
                     man[i].setF(girl);
-                    lady[girl].setApt(true);
-                    lady[girl].setF(i);
+                    women[girl].setApt(true);
+                    women[girl].setF(i);
                 }
-                if (lady[girl].getApt())
+                if (women[girl].getApt())
                 {
                     int before, now;
                     for (int j = 0; j < n; j++)
                     {
-                        if (lady[girl].getRank(j) == i)
+                        if (women[girl].getRank(j) == i)
                         {
                             now = j;
                         }
-                        if (lady[girl].getRank(j) == lady[girl].getF())
+                        if (women[girl].getRank(j) == women[girl].getF())
                         {
                             before = j;
                         }
@@ -112,11 +112,11 @@ int main(){
                     }
                     else if (before>now)
                     {
-                        man[lady[girl].getF()].setApt(false);
-                        man[lady[girl].getF()].setF(100);
+                        man[women[girl].getF()].setApt(false);
+                        man[women[girl].getF()].setF(100);
                         man[i].setApt(true);
                         man[i].setF(girl);
-                        lady[girl].setF(i);
+                        women[girl].setF(i);
                     }
                 }
             }
@@ -126,6 +126,6 @@ int main(){
     }
     for (int i = 0; i < n; i++)
     {
-        cout << i+1 << "和" << man[i].getF()+1 << "在一起" << endl;
+        cout <<"第"<<i+1 << "个男人和第" << man[i].getF()+1 << "个女人在一起" << endl;
     }
 }
