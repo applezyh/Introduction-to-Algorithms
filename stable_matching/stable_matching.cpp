@@ -123,6 +123,8 @@ int main(){
     }
     for (int i = 0; i < n; i++)
     {
-        cout<<man[i].getF()+1 << endl;
+        cout << man[i].getF()+1;
+        if(i!=n-1)
+            cout<<' ';
     }
 }
