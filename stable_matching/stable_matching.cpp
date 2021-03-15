@@ -49,7 +49,6 @@ class Person{
 };
 int main(){
     int n=0;
-    cout<<"请输入待匹配的人数:"<<endl;
     cin>>n;
     Person *man=new Person[n];
     Person *women=new Person[n];
@@ -62,7 +61,6 @@ int main(){
         for (int j = 0; j < n; j++)
         {
             int t;
-            cout << "请输入第" << i+1 << "个男人第"<<j+1<<"喜欢的女人:";
             cin >> t;
             man[i].setRank(t-1, j);
         }
@@ -72,7 +70,6 @@ int main(){
         for (int j = 0; j < n; j++)
         {
             int t;
-            cout << "请输入第" << i+1 << "个女人第"<<j+1<<"喜欢的男人:";
             cin >> t;
             women[i].setRank(t-1, j);
         }
@@ -126,6 +123,6 @@ int main(){
     }
     for (int i = 0; i < n; i++)
     {
-        cout <<"第"<<i+1 << "个男人和第" << man[i].getF()+1 << "个女人在一起" << endl;
+        cout<<man[i].getF()+1 << endl;
     }
 }
